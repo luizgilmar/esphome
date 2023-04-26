@@ -58,12 +58,13 @@ async def to_code(config):
         cg.add(var.register_dumper(dumper))
 
     triggers = await remote_base.build_triggers(config)
-
-    for trigger in triggers:
-        cg.add(var.register_listener(trigger))
-    await cg.register_component(var, config)
-
-    cg.add(var.set_tolerance(config[CONF_TOLERANCE]))
-    cg.add(var.set_buffer_size(config[CONF_BUFFER_SIZE]))
-    cg.add(var.set_filter_us(config[CONF_FILTER]))
-    cg.add(var.set_idle_us(config[CONF_IDLE]))
+    if triggers != []
+    {
+        for trigger in triggers:
+            cg.add(var.register_listener(trigger))
+        await cg.register_component(var, config)
+        cg.add(var.set_tolerance(config[CONF_TOLERANCE]))
+        cg.add(var.set_buffer_size(config[CONF_BUFFER_SIZE]))
+        cg.add(var.set_filter_us(config[CONF_FILTER]))
+        cg.add(var.set_idle_us(config[CONF_IDLE]))
+    }

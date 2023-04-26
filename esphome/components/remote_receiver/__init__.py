@@ -61,8 +61,8 @@ async def to_code(config):
     if triggers is not None:
         for trigger in triggers:
             cg.add(var.register_listener(trigger))
-        await cg.register_component(var, config)
-        cg.add(var.set_tolerance(config[CONF_TOLERANCE]))
-        cg.add(var.set_buffer_size(config[CONF_BUFFER_SIZE]))
-        cg.add(var.set_filter_us(config[CONF_FILTER]))
-        cg.add(var.set_idle_us(config[CONF_IDLE]))
+    await cg.register_component(var, config)
+    cg.add(var.set_tolerance(config[CONF_TOLERANCE]))
+    cg.add(var.set_buffer_size(config[CONF_BUFFER_SIZE]))
+    cg.add(var.set_filter_us(config[CONF_FILTER]))
+    cg.add(var.set_idle_us(config[CONF_IDLE]))

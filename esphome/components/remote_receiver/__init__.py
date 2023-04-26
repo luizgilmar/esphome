@@ -58,7 +58,7 @@ async def to_code(config):
         cg.add(var.register_dumper(dumper))
 
     triggers = await remote_base.build_triggers(config)
-    if triggers != None
+    if triggers is not None
     {
         for trigger in triggers:
             cg.add(var.register_listener(trigger))

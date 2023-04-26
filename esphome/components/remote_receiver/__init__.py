@@ -59,7 +59,7 @@ async def to_code(config):
 
     triggers = await remote_base.build_triggers(config)
     # if triggers is not None:
-    for trigger in triggers:
+    for trigger in triggers or []:
         cg.add(var.register_listener(trigger))
     await cg.register_component(var, config)
     cg.add(var.set_tolerance(config[CONF_TOLERANCE]))

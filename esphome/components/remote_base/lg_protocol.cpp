@@ -41,7 +41,7 @@ optional<LGData> LGProtocol::decode(RemoteReceiveData src) {
       out.data = (out.data << 1) | 1;
     } else if (src.expect_item(BIT_HIGH_US, BIT_ZERO_LOW_US)) {
       out.data = (out.data << 1) | 0;
-    } else if (out.nbits == 28) {
+    } else if (out.nbits == 32) {
       return out;
     } else {
       return {};

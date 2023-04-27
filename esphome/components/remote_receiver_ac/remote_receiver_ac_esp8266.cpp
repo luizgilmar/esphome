@@ -10,7 +10,7 @@ namespace remote_receiver_ac {
 
 static const char *const TAG = "remote_receiver_ac.esp8266";
 
-void IRAM_ATTR HOT RemoteReceiverACComponentStore::gpio_intr(RemoteReceiverComponentStore *arg) {
+void IRAM_ATTR HOT RemoteReceiverACComponentStore::gpio_intr(RemoteReceiverACComponentStore *arg) {
   const uint32_t now = micros();
   // If the lhs is 1 (rising edge) we should write to an uneven index and vice versa
   const uint32_t next = (arg->buffer_write_at + 1) % arg->buffer_size;

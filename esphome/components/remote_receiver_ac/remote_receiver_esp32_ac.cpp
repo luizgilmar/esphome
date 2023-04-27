@@ -147,7 +147,7 @@ void RemoteReceiverACComponent::decode_rmt_(rmt_item32_t *item, size_t len) {
   }
 }
 
-}  // namespace remote_receiver
-}  // namespace esphome_ac
+}  // namespace remote_receiver_ac
+}  // namespace esphome
 
 #endif

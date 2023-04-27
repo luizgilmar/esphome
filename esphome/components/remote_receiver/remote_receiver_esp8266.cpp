@@ -6,11 +6,11 @@
 #ifdef USE_ESP8266
 
 namespace esphome {
-namespace remote_receiver {
+namespace remote_receiver_ac {
 
-static const char *const TAG = "remote_receiver.esp8266";
+static const char *const TAG = "remote_receiver_ac.esp8266";
 
-void IRAM_ATTR HOT RemoteReceiverComponentStore::gpio_intr(RemoteReceiverComponentStore *arg) {
+void IRAM_ATTR HOT RemoteReceiverACComponentStore::gpio_intr(RemoteReceiverACComponentStore *arg) {
   const uint32_t now = micros();
   // If the lhs is 1 (rising edge) we should write to an uneven index and vice versa
   const uint32_t next = (arg->buffer_write_at + 1) % arg->buffer_size;
@@ -30,8 +30,8 @@ void IRAM_ATTR HOT RemoteReceiverComponentStore::gpio_intr(RemoteReceiverCompone
   arg->buffer[arg->buffer_write_at = next] = now;
 }
 
-void RemoteReceiverComponent::setup() {
-  ESP_LOGCONFIG(TAG, "Setting up Remote Receiver...");
+void RemoteReceiverACComponent::setup() {
+  ESP_LOGCONFIG(TAG, "Setting up Remote Receiver AC...");
   this->pin_->setup();
   auto &s = this->store_;
   s.filter_us = this->filter_us_;
@@ -54,13 +54,13 @@ void RemoteReceiverComponent::setup() {
   } else {
     s.buffer_write_at = s.buffer_read_at = 0;
   }
-  this->pin_->attach_interrupt(RemoteReceiverComponentStore::gpio_intr, &this->store_, gpio::INTERRUPT_ANY_EDGE);
+  this->pin_->attach_interrupt(RemoteReceiverACComponentStore::gpio_intr, &this->store_, gpio::INTERRUPT_ANY_EDGE);
 }
-void RemoteReceiverComponent::dump_config() {
+void RemoteReceiverACComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "Remote Receiver:");
   LOG_PIN("  Pin: ", this->pin_);
   if (this->pin_->digital_read()) {
-    ESP_LOGW(TAG, "Remote Receiver Signal starts with a HIGH value. Usually this means you have to "
+    ESP_LOGW(TAG, "Remote Receiver AC Signal starts with a HIGH value. Usually this means you have to "
                   "invert the signal using 'inverted: True' in the pin schema!");
   }
   ESP_LOGCONFIG(TAG, "  Buffer Size: %u", this->buffer_size_);
@@ -69,7 +69,7 @@ void RemoteReceiverComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "  Signal is done after %u us of no changes", this->idle_us_);
 }
 
-void RemoteReceiverComponent::loop() {
+void RemoteReceiverACComponent::loop() {
   auto &s = this->store_;
 
   // copy write at to local variables, as it's volatile
@@ -116,7 +116,7 @@ void RemoteReceiverComponent::loop() {
   this->call_listeners_dumpers_();
 }
 
-}  // namespace remote_receiver
+}  // namespace remote_receiver_ac
 }  // namespace esphome
 
 #endif

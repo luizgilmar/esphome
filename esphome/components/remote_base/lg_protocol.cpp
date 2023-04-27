@@ -6,11 +6,11 @@ namespace remote_base {
 
 static const char *const TAG = "remote.lg";
 
-static const uint32_t HEADER_HIGH_US = 9000;
-static const uint32_t HEADER_LOW_US = 4500;
-static const uint32_t BIT_HIGH_US = 560;
-static const uint32_t BIT_ONE_LOW_US = 1690;
-static const uint32_t BIT_ZERO_LOW_US = 560;
+static const uint32_t HEADER_HIGH_US = 3128;
+static const uint32_t HEADER_LOW_US = 9860;
+static const uint32_t BIT_HIGH_US = 520;
+static const uint32_t BIT_ONE_LOW_US = 1550;
+static const uint32_t BIT_ZERO_LOW_US = 520;
   
 void LGProtocol::encode(RemoteTransmitData *dst, const LGData &data) {
   dst->set_carrier_frequency(38000);

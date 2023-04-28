@@ -7,8 +7,8 @@ namespace esphome {
 namespace remote_receiver_ac {
 
 #ifdef USE_ESP8266
-struct RemoteReceiverComponentStore {
-  static void gpio_intr(RemoteReceiverComponentStore *arg);
+struct RemoteReceiverACComponentStore {
+  static void gpio_intr(RemoteReceiverACComponentStore *arg);
 
   /// Stores the time (in micros) that the leading/falling edge happened at
   ///  * An even index means a falling edge appeared at the time stored at the index
@@ -25,7 +25,7 @@ struct RemoteReceiverComponentStore {
 };
 #endif
 
-class RemoteReceiverComponent : public remote_base::RemoteReceiverBase,
+class RemoteReceiverACComponent : public remote_base::RemoteReceiverBase,
                                 public Component
 #ifdef USE_ESP32
     ,
@@ -34,10 +34,10 @@ class RemoteReceiverComponent : public remote_base::RemoteReceiverBase,
 {
  public:
 #ifdef USE_ESP32
-  RemoteReceiverComponent(InternalGPIOPin *pin, uint8_t mem_block_num = 1)
+  RemoteReceiverACComponent(InternalGPIOPin *pin, uint8_t mem_block_num = 1)
       : RemoteReceiverBase(pin), remote_base::RemoteRMTChannel(mem_block_num) {}
 #else
-  RemoteReceiverComponent(InternalGPIOPin *pin) : RemoteReceiverBase(pin) {}
+  RemoteReceiverACComponent(InternalGPIOPin *pin) : RemoteReceiverBase(pin) {}
 #endif
   void setup() override;
   void dump_config() override;
@@ -56,7 +56,7 @@ class RemoteReceiverComponent : public remote_base::RemoteReceiverBase,
 #endif
 
 #ifdef USE_ESP8266
-  RemoteReceiverComponentStore store_;
+  RemoteReceiverACComponentStore store_;
   HighFrequencyLoopRequester high_freq_;
 #endif
 

@@ -7,10 +7,10 @@
 namespace esphome {
 namespace remote_receiver_ac {
 
-static const char *const TAG = "remote_receiver.esp32";
+static const char *const TAG = "remote_receiver_ac.esp32";
 
 void RemoteReceiverACComponent::setup() {
-  ESP_LOGCONFIG(TAG, "Setting up Remote Receiver...");
+  ESP_LOGCONFIG(TAG, "Setting up Remote Receiver AC...");
   this->pin_->setup();
   rmt_config_t rmt{};
   this->config_rmt(rmt);
@@ -54,7 +54,7 @@ void RemoteReceiverACComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "Remote Receiver:");
   LOG_PIN("  Pin: ", this->pin_);
   if (this->pin_->digital_read()) {
-    ESP_LOGW(TAG, "Remote Receiver Signal starts with a HIGH value. Usually this means you have to "
+    ESP_LOGW(TAG, "Remote Receiver AC Signal starts with a HIGH value. Usually this means you have to "
                   "invert the signal using 'inverted: True' in the pin schema!");
   }
   ESP_LOGCONFIG(TAG, "  Channel: %d", this->channel_);
@@ -147,7 +147,7 @@ void RemoteReceiverACComponent::decode_rmt_(rmt_item32_t *item, size_t len) {
   }
 }
 
-}  // namespace remote_receiver
+}  // namespace remote_receiver_ac
 }  // namespace esphome
 
 #endif

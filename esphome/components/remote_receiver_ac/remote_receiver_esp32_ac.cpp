@@ -9,7 +9,7 @@ namespace remote_receiver_ac {
 
 static const char *const TAG = "remote_receiver.esp32";
 
-void RemoteReceiverComponent::setup() {
+void RemoteReceiverACComponent::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Remote Receiver...");
   this->pin_->setup();
   rmt_config_t rmt{};
@@ -50,7 +50,7 @@ void RemoteReceiverComponent::setup() {
     return;
   }
 }
-void RemoteReceiverComponent::dump_config() {
+void RemoteReceiverACComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "Remote Receiver:");
   LOG_PIN("  Pin: ", this->pin_);
   if (this->pin_->digital_read()) {
@@ -68,7 +68,7 @@ void RemoteReceiverComponent::dump_config() {
   }
 }
 
-void RemoteReceiverComponent::loop() {
+void RemoteReceiverACComponent::loop() {
   size_t len = 0;
   auto *item = (rmt_item32_t *) xRingbufferReceive(this->ringbuf_, &len, 0);
   if (item != nullptr) {
@@ -82,7 +82,7 @@ void RemoteReceiverComponent::loop() {
     this->call_listeners_dumpers_();
   }
 }
-void RemoteReceiverComponent::decode_rmt_(rmt_item32_t *item, size_t len) {
+void RemoteReceiverACComponent::decode_rmt_(rmt_item32_t *item, size_t len) {
   bool prev_level = false;
   uint32_t prev_length = 0;
   this->temp_.clear();

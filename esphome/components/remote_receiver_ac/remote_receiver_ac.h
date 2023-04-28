@@ -1,7 +1,7 @@
 #pragma once
 
 #include "esphome/core/component.h"
-#include "esphome/components/remote_base/remote_base_ac.h"
+#include "esphome/components/remote_base_ac/remote_base_ac.h"
 
 namespace esphome {
 namespace remote_receiver_ac {

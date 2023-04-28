@@ -1,4 +1,4 @@
-#include "remote_receiver.h"
+#include "remote_receiver_ac.h"
 #include "esphome/core/log.h"
 
 #ifdef USE_ESP32

@@ -1,4 +1,4 @@
-#include "remote_receiver.h"
+#include "remote_receiver_ac.h"
 #include "esphome/core/hal.h"
 #include "esphome/core/log.h"
 #include "esphome/core/helpers.h"

@@ -10,7 +10,7 @@ struct LGACData {
   uint32_t data;
   uint8_t nbits;
 
-  bool operator==(const LGData &rhs) const { return data == rhs.data && nbits == rhs.nbits; }
+  bool operator==(const LGACData &rhs) const { return data == rhs.data && nbits == rhs.nbits; }
 };
 
 class LGACProtocol : public RemoteProtocol<LGACData> {
@@ -22,7 +22,7 @@ class LGACProtocol : public RemoteProtocol<LGACData> {
 
 DECLARE_REMOTE_PROTOCOL(LGAC)
 
-template<typename... Ts> class LGAction : public RemoteTransmitterActionBase<Ts...> {
+template<typename... Ts> class LGACAction : public RemoteTransmitterActionBase<Ts...> {
  public:
   TEMPLATABLE_VALUE(uint32_t, data)
   TEMPLATABLE_VALUE(uint8_t, nbits)
@@ -35,5 +35,5 @@ template<typename... Ts> class LGAction : public RemoteTransmitterActionBase<Ts.
   }
 };
 
-}  // namespace remote_base_ac
+}  // namespace remote_base
 }  // namespace esphome

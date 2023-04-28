@@ -14,14 +14,14 @@ from esphome.const import (
 )
 from esphome.core import CORE, TimePeriod
 
-AUTO_LOAD = ["remote_base"]
+AUTO_LOAD = ["remote_base_ac"]
 remote_receiver_ac_ns = cg.esphome_ns.namespace("remote_receiver_ac")
 RemoteReceiverACComponent = remote_receiver_ac_ns.class_(
     "RemoteReceiverACComponent", remote_base.RemoteReceiverBase, cg.Component
 )
 
 MULTI_CONF = True
-CONFIG_SCHEMA = remote_base.validate_triggers(
+CONFIG_SCHEMA = remote_base_ac.validate_triggers(
     cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(RemoteReceiverACComponent),
@@ -53,11 +53,11 @@ async def to_code(config):
     else:
         var = cg.new_Pvariable(config[CONF_ID], pin)
 
-    dumpers = await remote_base.build_dumpers(config[CONF_DUMP])
+    dumpers = await remote_base_ac.build_dumpers(config[CONF_DUMP])
     for dumper in dumpers:
         cg.add(var.register_dumper(dumper))
 
-    triggers = await remote_base.build_triggers(config)
+    triggers = await remote_base_ac.build_triggers(config)
     for trigger in triggers or []:
         cg.add(var.register_listener(trigger))
     await cg.register_component(var, config)

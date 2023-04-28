@@ -1,6 +1,6 @@
 from esphome.components import binary_sensor, remote_base
 
-DEPENDENCIES = ["remote_receiver"]
+DEPENDENCIES = ["remote_receiver_ac"]
 
 CONFIG_SCHEMA = remote_base.validate_binary_sensor
 

@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome import pins
-from ...esphome.components import remote_base_ac
+from esphome.components import remote_base_ac
 from esphome.const import (
     CONF_BUFFER_SIZE,
     CONF_DUMP,

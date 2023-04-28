@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome import automation
-from esphome.components import binary_sensor
+import ..binary_sensor
 from esphome.const import (
     CONF_DATA,
     CONF_TRIGGER_ID,
@@ -40,7 +40,7 @@ AUTO_LOAD = ["binary_sensor"]
 CONF_RECEIVER_ID = "receiver_id"
 CONF_TRANSMITTER_ID = "transmitter_id"
 
-ns = remote_base_ac_ns = cg.esphome_ns.namespace("remote_base_ac")
+ns = remote_base_ns = cg.esphome_ns.namespace("remote_base_ac")
 RemoteProtocol = ns.class_("RemoteProtocol")
 RemoteReceiverListener = ns.class_("RemoteReceiverListener")
 RemoteReceiverBinarySensorBase = ns.class_(
@@ -53,8 +53,8 @@ RemoteTransmitterDumper = ns.class_("RemoteTransmitterDumper")
 RemoteTransmitterActionBase = ns.class_(
     "RemoteTransmitterActionBase", automation.Action
 )
-RemoteReceiverACBase = ns.class_("RemoteReceiverACBase")
-RemoteTransmitterACBase = ns.class_("RemoteTransmitterACBase")
+RemoteReceiverBase = ns.class_("RemoteReceiverACBase")
+RemoteTransmitterBase = ns.class_("RemoteTransmitterACBase")
 
 
 def templatize(value):

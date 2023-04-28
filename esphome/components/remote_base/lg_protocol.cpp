@@ -34,9 +34,11 @@ optional<LGData> LGProtocol::decode(RemoteReceiveData src) {
       .nbits = 0,
   };
   if (!src.expect_item(HEADER_HIGH_US, HEADER_LOW_US)) {
-    ESP_LOGD(TAG, "Received LG AC Header");
+    ESP_LOGD(TAG, "NOT Received LG AC Header");
     return {};
   }
+
+  ESP_LOGD(TAG, "Received LG AC Header");
 
   for (out.nbits = 0; out.nbits < 32; out.nbits++) {
     if (src.expect_item(BIT_HIGH_US, BIT_ONE_LOW_US)) {

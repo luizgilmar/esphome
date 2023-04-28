@@ -4,7 +4,7 @@
 #include "esphome/components/remote_base/remote_base.h"
 
 namespace esphome {
-namespace remote_receiver {
+namespace remote_receiver_ac {
 
 #ifdef USE_ESP8266
 struct RemoteReceiverComponentStore {
@@ -65,5 +65,5 @@ class RemoteReceiverComponent : public remote_base::RemoteReceiverBase,
   uint32_t idle_us_{10000};
 };
 
-}  // namespace remote_receiver
+}  // namespace remote_receiver_ac
 }  // namespace esphome

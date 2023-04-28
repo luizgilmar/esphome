@@ -12,7 +12,7 @@ static const uint32_t BIT_HIGH_US = 520;
 static const uint32_t BIT_ONE_LOW_US = 1550;
 static const uint32_t BIT_ZERO_LOW_US = 520;
   
-void LGacProtocol::encode(RemoteTransmitData *dst, const LGacData &data) {
+void LGACProtocol::encode(RemoteTransmitData *dst, const LGACData &data) {
   dst->set_carrier_frequency(38000);
   dst->reserve(2 + data.nbits * 2u);
 
@@ -28,7 +28,7 @@ void LGacProtocol::encode(RemoteTransmitData *dst, const LGacData &data) {
 
   dst->mark(BIT_HIGH_US);
 }
-optional<LGacData> LGacProtocol::decode(RemoteReceiveData src) {
+optional<LGACData> LGacProtocol::decode(RemoteReceiveData src) {
   LGData out{
       .data = 0,
       .nbits = 0,
@@ -56,7 +56,7 @@ optional<LGacData> LGacProtocol::decode(RemoteReceiveData src) {
   ESP_LOGD(TAG, "LG AC: out=0x%08X, nbits=%d", out.data, out.nbits);
   return out;
 }
-void LGacProtocol::dump(const LGacData &data) {
+void LGACProtocol::dump(const LGACData &data) {
   ESP_LOGD(TAG, "Received LG: data=0x%08X, nbits=%d", data.data, data.nbits);
   ESP_LOGD(TAG, "Received LG: data=0x%08X, nbits=%d", data.data, data.nbits);
 }

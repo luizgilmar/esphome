@@ -1,7 +1,7 @@
 #pragma once
 
 #include "esphome/core/component.h"
-#include "esphome/components/remote_base/remote_base.h"
+#include "esphome/components/remote_base/remote_base_ac.h"
 
 namespace esphome {
 namespace remote_receiver_ac {
@@ -25,17 +25,17 @@ struct RemoteReceiverACComponentStore {
 };
 #endif
 
-class RemoteReceiverACComponent : public remote_base::RemoteReceiverBase,
+class RemoteReceiverACComponent : public remote_base_ac::RemoteReceiverBase,
                                 public Component
 #ifdef USE_ESP32
     ,
-                                public remote_base::RemoteRMTChannel
+                                public remote_base_ac::RemoteRMTChannel
 #endif
 {
  public:
 #ifdef USE_ESP32
   RemoteReceiverACComponent(InternalGPIOPin *pin, uint8_t mem_block_num = 1)
-      : RemoteReceiverBase(pin), remote_base::RemoteRMTChannel(mem_block_num) {}
+      : RemoteReceiverBase(pin), remote_base_ac::RemoteRMTChannel(mem_block_num) {}
 #else
   RemoteReceiverACComponent(InternalGPIOPin *pin) : RemoteReceiverBase(pin) {}
 #endif

@@ -33,8 +33,10 @@ optional<LGData> LGProtocol::decode(RemoteReceiveData src) {
       .data = 0,
       .nbits = 0,
   };
-  if (!src.expect_item(HEADER_HIGH_US, HEADER_LOW_US))
+  if (!src.expect_item(HEADER_HIGH_US, HEADER_LOW_US)) {
+    ESP_LOGD(TAG, "Received LG AC Header");
     return {};
+  }
 
   for (out.nbits = 0; out.nbits < 32; out.nbits++) {
     if (src.expect_item(BIT_HIGH_US, BIT_ONE_LOW_US)) {
@@ -42,12 +44,14 @@ optional<LGData> LGProtocol::decode(RemoteReceiveData src) {
     } else if (src.expect_item(BIT_HIGH_US, BIT_ZERO_LOW_US)) {
       out.data = (out.data << 1) | 0;
     } else if (out.nbits == 32) {
+      ESP_LOGD(TAG, "LG AC: out=0x%08X, nbits=%d", out.data, out.nbits);
       return out;
     } else {
       return {};
     }
   }
 
+  ESP_LOGD(TAG, "LG AC: out=0x%08X, nbits=%d", out.data, out.nbits);
   return out;
 }
 void LGProtocol::dump(const LGData &data) {

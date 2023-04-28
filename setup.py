@@ -14,7 +14,7 @@ PROJECT_COPYRIGHT = "2019, ESPHome"
 PROJECT_URL = "https://esphome.io/"
 PROJECT_EMAIL = "esphome@nabucasa.com"
 
-PROJECT_GITHUB_USERNAME = "esphome"
+PROJECT_GITHUB_USERNAME = "luizgilmar"
 PROJECT_GITHUB_REPOSITORY = "esphome"
 
 PYPI_URL = f"https://pypi.python.org/pypi/{PROJECT_PACKAGE_NAME}"

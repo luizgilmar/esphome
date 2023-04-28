@@ -15,8 +15,8 @@ from esphome.const import (
 from esphome.core import CORE, TimePeriod
 
 AUTO_LOAD = ["remote_base"]
-remote_receiver_ac_ns = cg.esphome_ns.namespace("remote_receiver")
-RemoteReceiverACComponent = remote_receiver_ac_ns.class_(
+remote_receiver_ns = cg.esphome_ns.namespace("remote_receiver")
+RemoteReceiverACComponent = remote_receiver_ns.class_(
     "RemoteReceiverACComponent", remote_base.RemoteReceiverBase, cg.Component
 )
 

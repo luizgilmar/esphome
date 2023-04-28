@@ -1,10 +1,10 @@
-from esphome.components import binary_sensor, remote_base
+from esphome.components import binary_sensor, remote_base_ac
 
 DEPENDENCIES = ["remote_receiver_ac"]
 
-CONFIG_SCHEMA = remote_base.validate_binary_sensor
+CONFIG_SCHEMA = remote_base_ac.validate_binary_sensor
 
 
 async def to_code(config):
-    var = await remote_base.build_binary_sensor(config)
+    var = await remote_base_ac.build_binary_sensor(config)
     await binary_sensor.register_binary_sensor(var, config)

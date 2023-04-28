@@ -17,7 +17,7 @@ from esphome.core import CORE, TimePeriod
 AUTO_LOAD = ["remote_base_ac"]
 remote_receiver_ac_ns = cg.esphome_ns.namespace("remote_receiver_ac")
 RemoteReceiverACComponent = remote_receiver_ac_ns.class_(
-    "RemoteReceiverACComponent", remote_base.RemoteReceiverBase, cg.Component
+    "RemoteReceiverACComponent", remote_base_ac.RemoteReceiverBase, cg.Component
 )
 
 MULTI_CONF = True
@@ -26,7 +26,7 @@ CONFIG_SCHEMA = remote_base_ac.validate_triggers(
         {
             cv.GenerateID(): cv.declare_id(RemoteReceiverACComponent),
             cv.Required(CONF_PIN): cv.All(pins.internal_gpio_input_pin_schema),
-            cv.Optional(CONF_DUMP, default=[]): remote_base.validate_dumpers,
+            cv.Optional(CONF_DUMP, default=[]): remote_base_ac.validate_dumpers,
             cv.Optional(CONF_TOLERANCE, default=25): cv.All(
                 cv.percentage_int, cv.Range(min=0)
             ),

@@ -498,7 +498,7 @@ async def lg_action(var, config, args):
 
 
 # LGac
-LGacData, LGacBinarySensor, LGacTrigger, LGacAction, LGacDumper = declare_protocol("LGAC")
+LGACData, LGACBinarySensor, LGACTrigger, LGACAction, LGACDumper = declare_protocol("LGAC")
 LG_SCHEMA = cv.Schema(
     {
         cv.Required(CONF_DATA): cv.hex_uint32_t,
@@ -507,12 +507,12 @@ LG_SCHEMA = cv.Schema(
 )
 
 
-@register_binary_sensor("lgac", LGacBinarySensor, LG_SCHEMA)
+@register_binary_sensor("lgac", LGACBinarySensor, LG_SCHEMA)
 def lgac_binary_sensor(var, config):
     cg.add(
         var.set_data(
             cg.StructInitializer(
-                LGData,
+                LGACData,
                 ("data", config[CONF_DATA]),
                 ("nbits", config[CONF_NBITS]),
             )
@@ -520,17 +520,17 @@ def lgac_binary_sensor(var, config):
     )
 
 
-@register_trigger("lgac", LGacTrigger, LGacData)
+@register_trigger("lgac", LGACTrigger, LGACData)
 def lgac_trigger(var, config):
     pass
 
 
-@register_dumper("lgac", LGacDumper)
+@register_dumper("lgac", LGACDumper)
 def lgac_dumper(var, config):
     pass
 
 
-@register_action("lgac", LGacAction, LG_SCHEMA)
+@register_action("lgac", LGACAction, LG_SCHEMA)
 async def lgac_action(var, config, args):
     template_ = await cg.templatable(config[CONF_DATA], args, cg.uint32)
     cg.add(var.set_data(template_))

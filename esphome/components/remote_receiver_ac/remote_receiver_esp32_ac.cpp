@@ -5,7 +5,7 @@
 #include <driver/rmt.h>
 
 namespace esphome {
-namespace remote_receiver {
+namespace remote_receiver_ac {
 
 static const char *const TAG = "remote_receiver.esp32";
 

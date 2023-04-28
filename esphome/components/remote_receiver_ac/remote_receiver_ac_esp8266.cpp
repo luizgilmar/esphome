@@ -10,7 +10,7 @@ namespace remote_receiver_ac {
 
 static const char *const TAG = "remote_receiver_ac.esp8266";
 
-void IRAM_ATTR HOT RemoteReceiverACComponentStore::gpio_intr(RemoteReceiverACComponentStore *arg) {
+void IRAM_ATTR HOT RemoteReceiverComponentStore::gpio_intr(RemoteReceiverComponentStore *arg) {
   const uint32_t now = micros();
   // If the lhs is 1 (rising edge) we should write to an uneven index and vice versa
   const uint32_t next = (arg->buffer_write_at + 1) % arg->buffer_size;
@@ -30,7 +30,7 @@ void IRAM_ATTR HOT RemoteReceiverACComponentStore::gpio_intr(RemoteReceiverACCom
   arg->buffer[arg->buffer_write_at = next] = now;
 }
 
-void RemoteReceiverACComponent::setup() {
+void RemoteReceiverComponent::setup() {
   ESP_LOGCONFIG(TAG, "Setting up Remote Receiver AC...");
   this->pin_->setup();
   auto &s = this->store_;
@@ -56,7 +56,7 @@ void RemoteReceiverACComponent::setup() {
   }
   this->pin_->attach_interrupt(RemoteReceiverComponentStore::gpio_intr, &this->store_, gpio::INTERRUPT_ANY_EDGE);
 }
-void RemoteReceiverACComponent::dump_config() {
+void RemoteReceiverComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "Remote Receiver AC:");
   LOG_PIN("  Pin: ", this->pin_);
   if (this->pin_->digital_read()) {
@@ -69,7 +69,7 @@ void RemoteReceiverACComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "  Signal is done after %u us of no changes", this->idle_us_);
 }
 
-void RemoteReceiverACComponent::loop() {
+void RemoteReceiverComponent::loop() {
   auto &s = this->store_;
 
   // copy write at to local variables, as it's volatile

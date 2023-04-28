@@ -1,5 +1,5 @@
 from esphome.components import binary_sensor
-import remote_base_ac
+from ...esphome.components import remote_base_ac
 
 DEPENDENCIES = ["remote_receiver_ac"]
 
